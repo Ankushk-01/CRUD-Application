@@ -10,7 +10,7 @@ plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
 }
-mainClassName = "crud_mysql.main.App"
+
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
@@ -34,18 +34,5 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = 'crud_mysql.main.App'
-}
-
-task fatJar(type: Jar) {
-    manifest {
-        attributes 'Main-Class': mainClassName
-    }
-    from {
-        configurations.runtimeClasspath.collect {
-            it.isDirectory() ? it : zipTree(it)
-        }
-    }
-    duplicatesStrategy = 'exclude'
-    with jar
+    mainClass = 'crud_mysql.App'
 }

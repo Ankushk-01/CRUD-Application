@@ -5,7 +5,6 @@ import java.sql.SQLException;
 
 public class DataBaseManger {
 
-
     static String jdbcUrl = "jdbc:mysql://localhost:3306";
     static String username = "root";
     static String password = "Ankush@123";

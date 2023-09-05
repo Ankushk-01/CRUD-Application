@@ -2,8 +2,10 @@
 package crud_mysql.main;
 import crud_mysql.dao.DataBaseDao;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class App {
+	public static final Logger logger = Logger.getLogger(App.class.getName());
     public static void main(String[] args) {
     	int option = 0;
         char ch ='y';
@@ -40,6 +42,7 @@ public class App {
                 case 2: {
                     System.out.println("Enter the Book Name : ");
                     String tittle = sc2.nextLine();
+                    dao.deleteBook(tittle);
                     System.out.println("The name of the book is : " + tittle);
                     break;
                 }
