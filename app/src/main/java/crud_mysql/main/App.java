@@ -42,8 +42,13 @@ public class App {
                 case 2: {
                     System.out.println("Enter the Book Name : ");
                     String tittle = sc2.nextLine();
-                    dao.deleteBook(tittle);
-                    System.out.println("The name of the book is : " + tittle);
+                    int result = dao.deleteBook(tittle);
+                    if(result ==0) {
+                    	logger.info("No Book is Deleted");
+                    	System.out.println("No book found of title : "+tittle);
+                    }else {
+                    	System.out.println("The name of the deleted book is : " + tittle);
+                    }
                     break;
                 }
                 case 3: {

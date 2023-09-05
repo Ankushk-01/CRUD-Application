@@ -104,13 +104,15 @@ public class DataBaseDao {
     			bookId = rs.getInt(1);
     		}
     		statement.close();
+    		if(bookId ==0) {
+    			return 0;
+    		}
     	query = "DELETE FROM "+database+"."+tableName+" WHERE bookId = "+bookId;
     	try(Statement stmt = connection.createStatement();){
     		int rowsAffected = stmt.executeUpdate(query);
-    		logger.info("The Number of books deleted is : "+rowsAffected);
+//    		logger.info("The Number of books deleted is : "+rowsAffected);
     		stmt.close();
     	}
-    	
     	}catch (SQLException e) {
             System.out.println("Error occurs while insertion ");
             e.printStackTrace();
