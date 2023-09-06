@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import crud_mysql.util.DataBaseManger;
-import static crud_mysql.main.App.logger;
+//import static crud_mysql.main.App.logger;
 public class DataBaseDao {
     String database = "book";
     String tableName = "books";
@@ -109,7 +109,7 @@ public class DataBaseDao {
     		}
     	query = "DELETE FROM "+database+"."+tableName+" WHERE bookId = "+bookId;
     	try(Statement stmt = connection.createStatement();){
-    		int rowsAffected = stmt.executeUpdate(query);
+    		stmt.executeUpdate(query);
 //    		logger.info("The Number of books deleted is : "+rowsAffected);
     		stmt.close();
     	}
@@ -119,4 +119,22 @@ public class DataBaseDao {
         }
     	return 1;
     }
+	public int checkBook(String title) {
+		String query = "SELECT bookId FROM "+database+"."+tableName+" WHERE title = "+'"'+title+'"';
+    	try(PreparedStatement statement = connection.prepareStatement(query);){
+    		ResultSet rs = statement.executeQuery();
+    		int bookId = 0;
+    		while(rs.next()) {
+    			bookId = rs.getInt(1);
+    		}
+    		statement.close();
+    		if(bookId ==0) {
+    			return 0;
+    		}
+    		}catch (SQLException e) {
+                System.out.println("Error occurs while insertion ");
+                e.printStackTrace();
+            }
+		return 1;
+	}
 }

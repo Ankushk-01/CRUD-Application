@@ -45,7 +45,7 @@ public class App {
                     int result = dao.deleteBook(tittle);
                     if(result ==0) {
                     	logger.info("No Book is Deleted");
-                    	System.out.println("No book found of title : "+tittle);
+                    	System.out.println("No book found for title : "+tittle);
                     }else {
                     	System.out.println("The name of the deleted book is : " + tittle);
                     }
@@ -55,9 +55,9 @@ public class App {
                     System.out.println("Enter the Book Name : ");
                     String title = sc2.nextLine();
                     System.out.println("The book you want to edit is : " + title);
-                    System.out
-                            .println(
-                                    "Which field you want to edit :\n 1. Title \n 2. Author \n 3. Genre \n 4. Status \n ");
+                    int found = dao.checkBook(title);
+                    if(found>0) {
+                    System.out.println("Which field you want to edit :\n 1. Title \n 2. Author \n 3. Genre \n 4. Status \n ");
                     int choose = sc.nextInt();
                     switch (choose) {
                         case 1: {
@@ -93,6 +93,7 @@ public class App {
 
                             System.out.println("Data : " + name + " " + author + " " + genre + " " + available);
                         }
+                    }
                     }
                     break;
                 }
