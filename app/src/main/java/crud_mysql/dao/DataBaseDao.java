@@ -143,6 +143,19 @@ public class DataBaseDao {
 		}
 		else {
 			if (i==1) {
+				String query = "UPDATE FROM "+database+"."+tableName+" SET title = "+field+"WHERE bookId = "+found;
+				try(Statement stmt = connection.createStatement();){
+		    		int rows = stmt.executeUpdate(query);
+		    		if(rows >0) {
+		    			return 1;
+		    		}else {
+		    			return 0;
+		    		}
+				}catch (SQLException e) {
+	                System.out.println("Error occurs while insertion ");
+	                e.printStackTrace();
+	            }
+			}else if(i==2) {
 				String query = "UPDATE title FROM "+database+"."+tableName+"WHERE bookId = "+found;
 				try(Statement stmt = connection.createStatement();){
 		    		int rows = stmt.executeUpdate(query);
