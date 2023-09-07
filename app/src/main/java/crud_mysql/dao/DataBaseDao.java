@@ -137,4 +137,30 @@ public class DataBaseDao {
             }
 		return 1;
 	}
+	public int updateBook(int i,int found, String field) {
+		if(i<=0) {
+			return 0;
+		}
+		else {
+			if (i==1) {
+				String query = "UPDATE title FROM "+database+"."+tableName+"WHERE bookId = "+found;
+				try(Statement stmt = connection.createStatement();){
+		    		int rows = stmt.executeUpdate(query);
+		    		if(rows >0) {
+		    			return 1;
+		    		}else {
+		    			return 0;
+		    		}
+				}catch (SQLException e) {
+	                System.out.println("Error occurs while insertion ");
+	                e.printStackTrace();
+	            }
+			}
+		}
+		return 1;
+	}
+	public int updatefullBook(String name, String author, String genre, int available) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

@@ -63,22 +63,34 @@ public class App {
                         case 1: {
                             System.out.println("Updating the Title of the book : ");
                             String name = sc2.nextLine();
-                            System.out.println("UPdated name of the book is : " + name);
+                            int rowAffected = dao.updateBook(1,found,name);
+                            if(rowAffected>0) {
+                            	System.out.println("UPdated name of the book is : " + name);
+                            }
                         }
                         case 2: {
                             System.out.println("Updating the Author of the book : ");
                             String author = sc2.nextLine();
-                            System.out.println("UPdated name of the book is : " + author);
+                            int rowAffected = dao.updateBook(1,found,author);
+                            if(rowAffected>0) {
+                            	System.out.println("UPdated name of the book is : " + author);
+                            }
                         }
                         case 3: {
                             System.out.println("Updating the Genre of the book : ");
                             String genre = sc2.nextLine();
-                            System.out.println("UPdated name of the book is : " + genre);
+                            int rowAffected = dao.updateBook(1,found,genre);
+                            if(rowAffected>0) {
+                            	System.out.println("UPdated name of the book is : " + genre);
+                            }
                         }
                         case 4: {
                             System.out.println("Updating the Status of the book : ");
                             String status = sc2.nextLine();
-                            System.out.println("UPdated name of the book is : " + status);
+                            int rowAffected = dao.updateBook(1,found,status);
+                            if(rowAffected>0) {
+                            	System.out.println("UPdated name of the book is : " + status);
+                            }
                         }
                         default: {
                             System.out.println("Updating all the fields");
@@ -90,8 +102,10 @@ public class App {
                             String genre = sc2.nextLine();
                             System.out.print("Choose availability option : 1. Available soon 2. Available now ");
                             int available = sc.nextInt();
-
-                            System.out.println("Data : " + name + " " + author + " " + genre + " " + available);
+                            int rowAffected = dao.updatefullBook(name,author,genre,available);
+                            if(rowAffected>0) {
+                            	System.out.println("Data : " + name + " " + author + " " + genre + " " + available);
+                            }
                         }
                     }
                     }
