@@ -14,12 +14,12 @@ public class App {
         while(ch != 'n' || ch!='n') {
         	System.out.println("Welcome to the CRUD Application ");
         	System.out.println("This is a Book Management Console based System ");
-        System.out.println("Choose Action you want to do : ");
-        System.out.println("1. Add Book");
-        System.out.println("2. Remove Book");
-        System.out.println("3. Edit Book Details");
-        System.out.println("4. Book Status ");
-        System.out.println("5. Exit ");
+        	System.out.println("Choose Action you want to do : ");
+        	System.out.println("1. Add Book");
+        	System.out.println("2. Remove Book");
+        	System.out.println("3. Edit Book Details");
+        	System.out.println("4. Book Status ");
+        	System.out.println("5. Exit ");
         	if(sc.hasNextInt()) {
         		option = sc.nextInt();
             switch (option) {
@@ -66,6 +66,7 @@ public class App {
                             int rowAffected = dao.updateBook(1,found,name);
                             if(rowAffected>0) {
                             	System.out.println("UPdated name of the book is : " + name);
+                            	break;
                             }
                         }
                         case 2: {
@@ -74,6 +75,7 @@ public class App {
                             int rowAffected = dao.updateBook(1,found,author);
                             if(rowAffected>0) {
                             	System.out.println("UPdated name of the book is : " + author);
+                            	break;
                             }
                         }
                         case 3: {
@@ -82,6 +84,7 @@ public class App {
                             int rowAffected = dao.updateBook(1,found,genre);
                             if(rowAffected>0) {
                             	System.out.println("UPdated name of the book is : " + genre);
+                            	break;
                             }
                         }
                         case 4: {
@@ -90,6 +93,7 @@ public class App {
                             int rowAffected = dao.updateBook(1,found,status);
                             if(rowAffected>0) {
                             	System.out.println("UPdated name of the book is : " + status);
+                            	break;
                             }
                         }
                         default: {
@@ -105,6 +109,7 @@ public class App {
                             int rowAffected = dao.updatefullBook(name,author,genre,available);
                             if(rowAffected>0) {
                             	System.out.println("Data : " + name + " " + author + " " + genre + " " + available);
+                            	break;
                             }
                         }
                     }

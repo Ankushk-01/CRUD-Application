@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import crud_mysql.util.DataBaseManger;
-//import static crud_mysql.main.App.logger;
+import static crud_mysql.main.App.logger;
 public class DataBaseDao {
     String database = "book";
     String tableName = "books";
@@ -130,12 +130,14 @@ public class DataBaseDao {
     		statement.close();
     		if(bookId ==0) {
     			return 0;
+    		}else {
+    			return bookId;
     		}
     		}catch (SQLException e) {
                 System.out.println("Error occurs while insertion ");
                 e.printStackTrace();
             }
-		return 1;
+		return 0;
 	}
 	public int updateBook(int i,int found, String field) {
 		if(i<=0) {
@@ -143,7 +145,8 @@ public class DataBaseDao {
 		}
 		else {
 			if (i==1) {
-				String query = "UPDATE FROM "+database+"."+tableName+" SET title = "+field+"WHERE bookId = "+found;
+				String query = "UPDATE "+database+"."+tableName+" SET title = \""+field+"\" WHERE bookId = "+found+";";
+				logger.info("query for updation is : "+query);
 				try(Statement stmt = connection.createStatement();){
 		    		int rows = stmt.executeUpdate(query);
 		    		if(rows >0) {
@@ -156,7 +159,35 @@ public class DataBaseDao {
 	                e.printStackTrace();
 	            }
 			}else if(i==2) {
-				String query = "UPDATE title FROM "+database+"."+tableName+"WHERE bookId = "+found;
+				String query = "UPDATE "+database+"."+tableName+" SET author = '"+field+"' WHERE bookId = "+found;
+				try(Statement stmt = connection.createStatement();){
+		    		int rows = stmt.executeUpdate(query);
+		    		if(rows >0) {
+		    			return 1;
+		    		}else {
+		    			return 0;
+		    		}
+				}catch (SQLException e) {
+	                System.out.println("Error occurs while insertion ");
+	                e.printStackTrace();
+	            }
+			}
+			else if(i==3) {
+				String query = "UPDATE "+database+"."+tableName+" SET genre = '"+field+"' WHERE bookId = "+found;
+				try(Statement stmt = connection.createStatement();){
+		    		int rows = stmt.executeUpdate(query);
+		    		if(rows >0) {
+		    			return 1;
+		    		}else {
+		    			return 0;
+		    		}
+				}catch (SQLException e) {
+	                System.out.println("Error occurs while insertion ");
+	                e.printStackTrace();
+	            }
+			}
+			else if(i==4) {
+				String query = "UPDATE "+database+"."+tableName+" SET avail = '"+field+"' WHERE bookId = "+found;
 				try(Statement stmt = connection.createStatement();){
 		    		int rows = stmt.executeUpdate(query);
 		    		if(rows >0) {
