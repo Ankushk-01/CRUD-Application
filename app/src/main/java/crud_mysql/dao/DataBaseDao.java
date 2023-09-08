@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import crud_mysql.util.DataBaseManger;
-import static crud_mysql.main.App.logger;
+//import static crud_mysql.main.App.logger;
 public class DataBaseDao {
     String database = "book";
     String tableName = "books";
@@ -146,7 +146,7 @@ public class DataBaseDao {
 		else {
 			if (i==1) {
 				String query = "UPDATE "+database+"."+tableName+" SET title = \""+field+"\" WHERE bookId = "+found+";";
-				logger.info("query for updation is : "+query);
+//				logger.info("query for updation is : "+query);
 				try(Statement stmt = connection.createStatement();){
 		    		int rows = stmt.executeUpdate(query);
 		    		if(rows >0) {

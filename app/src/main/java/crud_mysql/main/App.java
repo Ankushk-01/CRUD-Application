@@ -57,7 +57,7 @@ public class App {
                     System.out.println("The book you want to edit is : " + title);
                     int found = dao.checkBook(title);
                     if(found>0) {
-                    System.out.println("Which field you want to edit :\n 1. Title \n 2. Author \n 3. Genre \n 4. Status \n ");
+                    System.out.println("Which field you want to edit :\n 1. Title \n 2. Author \n 3. Genre \n 4. Status \n 5. All \n");
                     int choose = sc.nextInt();
                     switch (choose) {
                         case 1: {
@@ -96,7 +96,7 @@ public class App {
                             	break;
                             }
                         }
-                        default: {
+                        case 5: {
                             System.out.println("Updating all the fields");
                             System.out.print("Enter the Title of the Book : ");
                             String name = sc2.nextLine();
@@ -111,6 +111,10 @@ public class App {
                             	System.out.println("Data : " + name + " " + author + " " + genre + " " + available);
                             	break;
                             }
+                        }
+                        default: {
+                        	logger.warning("Choose the valid option..");
+                        	break;
                         }
                     }
                     }
@@ -129,7 +133,7 @@ public class App {
                     break;
                 }
                 default: {
-                    System.out.println("Invalid Input Please try again !");
+                	logger.warning("Invalid Input Please try again !");
                     System.exit(0);
                     break;
                 }
