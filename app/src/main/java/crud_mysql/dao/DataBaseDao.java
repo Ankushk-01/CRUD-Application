@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import crud_mysql.util.DataBaseManger;
-//import static crud_mysql.main.App.logger;
+import static crud_mysql.main.App.logger;
 public class DataBaseDao {
     String database = "book";
     String tableName = "books";
@@ -19,17 +19,10 @@ public class DataBaseDao {
             String Query = "CREATE DATABASE IF NOT EXISTS " + database;
             int rowsAffected = statement.executeUpdate(Query);
             if (rowsAffected > 0) {
-//                System.out.println("DataBase Created Successfully");
+               logger.info("DataBase Created Successfully");
             } else {
-                System.out.println("Query Failed");
+				logger.info("Query Failed");
             }
-            // String dummy = "CREATE TABLE new_one.book (\n" + //
-            // "title int8,\n" + //
-            // "author varchar(200),\n" + //
-            // "genre varchar(200),\n" + //
-            // "avail varchar(200),\n" + //
-            // "checkoutby varchar(500)\n" + //
-            // ");";
             String query = "CREATE TABLE IF NOT EXISTS " + database + "." + tableName + " ( \n " +
             		"bookId int8 AUTO_INCREMENT primary key,\n"+
                     "title varchar(200),\n" + //
@@ -38,10 +31,9 @@ public class DataBaseDao {
                     "avail varchar(200),\n" + //
                     "checkoutby varchar(500)\n" + //
                     ");";
-//            System.out.println("query : " + query);
             int result = statement.executeUpdate(query);
             if (result == 0) {
-//                System.out.println("Table created successfully");
+				// logger.info("Table created successfully");
             } else {
                 System.out.println("Query failed for Table creation ");
             }
@@ -65,7 +57,7 @@ public class DataBaseDao {
             avail = "Not Available";
         }
         String query = "insert into "+database+"."+tableName+" (title, author, genre, avail, checkoutby) value (?,?,?,?,?)";
-//        System.out.println("insert query : "+query);
+//        logger.info("insert query : "+query);
         try {
             PreparedStatement statement = connection.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
             statement.setString(1,title);
@@ -204,7 +196,6 @@ public class DataBaseDao {
 		return 1;
 	}
 	public int updatefullBook(String name, String author, String genre, int available) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 }
