@@ -18,7 +18,6 @@ public class DataBaseManger {
             }catch(SQLException e){
             logger.warning("Error occurs : "+e.getMessage());
             e.printStackTrace();
-            
         }
         return connection;
         }

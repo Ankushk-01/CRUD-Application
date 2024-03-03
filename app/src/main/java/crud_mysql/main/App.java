@@ -106,11 +106,15 @@ public class App {
                             String genre = sc2.nextLine();
                             System.out.print("Choose availability option : 1. Available soon 2. Available now ");
                             int available = sc.nextInt();
-                            int rowAffected = dao.updatefullBook(name,author,genre,available);
-                            if(rowAffected>0) {
-                            	System.out.println("Data : " + name + " " + author + " " + genre + " " + available);
-                            	break;
+                            int bookExists = dao.checkBook(title);
+                            if(bookExists >0){
+                                int rowAffected = dao.updatefullBook(name,author,genre,available);
+                                if(rowAffected>0) {
+                                    System.out.println("Data : " + name + " " + author + " " + genre + " " + available);
+                                    break;
+                                }
                             }
+                            System.out.println("Book not exist");
                         }
                         default: {
                         	logger.warning("Choose the valid option..");

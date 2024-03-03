@@ -196,6 +196,8 @@ public class DataBaseDao {
 		return 1;
 	}
 	public int updatefullBook(String name, String author, String genre, int available) {
+		String query = "UPDATE "+database+"."+tableName+" SET avail = '"+available+"' WHERE bookId = "+author;
+
 		return 0;
 	}
 }
