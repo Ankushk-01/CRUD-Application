@@ -3,9 +3,11 @@ package crud_mysql.main;
 import crud_mysql.dao.DataBaseDao;
 import java.util.Scanner;
 import java.util.logging.Logger;
+import io.github.cdimascio.dotenv.Dotenv;
 
 public class App {
 	public static final Logger logger = Logger.getLogger(App.class.getName());
+    public static final Dotenv environments = Dotenv.load();
     public static void main(String[] args) {
     	int option = 0;
         char ch ='y';
@@ -32,8 +34,6 @@ public class App {
                     String genre = sc2.nextLine();
                     System.out.print("Choose availability option : 1. Available soon 2. Available now ");
                     int available = sc.nextInt();
-
-//                    System.out.println("Data : " + title + " " + author + " " + genre + " " + available);
                     dao.insertBook(title, author, genre, available);
                     
                     break;
@@ -106,11 +106,15 @@ public class App {
                             String genre = sc2.nextLine();
                             System.out.print("Choose availability option : 1. Available soon 2. Available now ");
                             int available = sc.nextInt();
-                            int rowAffected = dao.updatefullBook(name,author,genre,available);
-                            if(rowAffected>0) {
-                            	System.out.println("Data : " + name + " " + author + " " + genre + " " + available);
-                            	break;
+                            int bookExists = dao.checkBook(title);
+                            if(bookExists >0){
+                                int rowAffected = dao.updatefullBook(name,author,genre,available);
+                                if(rowAffected>0) {
+                                    System.out.println("Data : " + name + " " + author + " " + genre + " " + available);
+                                    break;
+                                }
                             }
+                            System.out.println("Book not exist");
                         }
                         default: {
                         	logger.warning("Choose the valid option..");
